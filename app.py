@@ -1,17 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+from config import Config
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
+db = SQLAlchemy(app)
 
-@app.route('/')
-def hello_world():
-    return render_template('hello.html')
-
-
-@app.route('/user/<name>')
-def user(name):
-    return render_template('hello.html', name=name)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
